@@ -1,46 +1,22 @@
-<main class="main">
-  <div
-    class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl my-10"
-  >
-    <div class="md:flex">
-      <div class="md:shrink-0">
-        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-        <mat-menu #menu="matMenu">
-          <button
-            mat-menu-item
-            routerLink="/first-component"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-          >
-            First
-          </button>
-          <button
-            mat-menu-item
-            routerLink="/second-component"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-          >
-            Second
-          </button>
-        </mat-menu>
-      </div>
-      <div class="p-8">
-        <div
-          class="uppercase tracking-wide text-sm text-indigo-500 font-semibold"
-        >
-          Hello World
-        </div>
-        <a
-          href="#"
-          class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-          >Incredible accommodation for your team</a
-        >
-        <p class="mt-2 text-slate-500">
-          Looking to take your team away on a retreat to enjoy awesome food and
-          take in some sunshine? We have a list of places to do just that.
-        </p>
-      </div>
-    </div>
+<div class="grid full-height mat-app-background">
+  <mat-toolbar>
+    <span class="cursor-pointer" routerLink="/">Angular Identity SPA</span>
+    <span flexChild></span>
+    @if (account(); as acct) {
+    <span class="mr8">Welcome, {{ acct.name }}</span>
+    <button mat-icon-button (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+    <button mat-icon-button (click)="viewProfile()">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    } @else {
+    <button mat-icon-button (click)="login()">
+      <mat-icon>login</mat-icon>
+    </button>
+    }
+  </mat-toolbar>
+  <div class="overflow">
+    <router-outlet *ngIf="!isIframe"></router-outlet>
   </div>
-</main>
-<router-outlet />
+</div>
